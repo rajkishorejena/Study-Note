@@ -1,7 +1,11 @@
-/*
- Linear Search
- This function performs a linear search on an array to find the index of a target value.
-*/
+let arr = [7, 1, 5, 4, 3, 2];
+
+/**
+ * Performs a linear search on an array to find the index of a target value.
+ * @param {number[]} arr - The array to search.
+ * @param {number} target - The value to search for.
+ * @return {number} - The index of the target value if found, otherwise -1.
+ */
 function linearSearch(arr, target) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === target) {
@@ -10,6 +14,7 @@ function linearSearch(arr, target) {
   }
   return -1; // Return -1 if the target is not found
 }
+
 linearSearch([1, 2, 3, 4, 5], 3); // Returns 2
 // This approach has a time complexity of O(n) and a space complexity of O(1) since it uses only a few variables for indexing.
 
@@ -92,9 +97,9 @@ console.log(bubbleSort([10, -22, 54, 3, 4, 45, 6]));
  * The outer loop runs n-1 times, and the inner loop runs i+1 to n times, where n is the length of the array.
  * This approach has a time complexity of O(n^2) in the worst case and a space complexity of O(1) since it uses only a few variables for indexing and swapping.
  * Space complexity is O(1) because it sorts the array in place without using any additional data structures.
+ * @param {number[]} a
+ * @return {number[]}
  */
-
-let arr = [7, 1, 5, 4, 3, 2];
 
 function selectionSort(a) {
   let n = a.length;
@@ -138,9 +143,20 @@ console.log(selectionSort(arr));
  * The merge process involves comparing elements from the two halves and building a new sorted array by selecting the smaller element at each step.
  * This approach has a time complexity of O(n log n) in all cases and a space complexity of O(n) due to the additional space required for the temporary arrays used during the merge process.
  * Space complexity is O(n) because it requires additional space to hold the merged arrays during the sorting process.
+ * @param {number[]} arr
+ * @return {number[]}
  */
 
-let arr = [7, 1, 5, 4, 3, 2];
+function mergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let middle = Math.floor(arr.length / 2);
+  let leftSlice = mergeSort(arr.slice(0, middle));
+  let rightSlice = mergeSort(arr.slice(middle));
+
+  return merge(leftSlice, rightSlice);
+}
 //Helper function to merge two sorted arrays [1, 3, 5] and [2, 4, 6]
 function merge(left, right) {
   let result = [];
@@ -159,14 +175,4 @@ function merge(left, right) {
   return [...result, ...left.slice(i), ...right.slice(j)];
 }
 
-function mergeSort(arr) {
-  if (arr.length <= 1) {
-    return arr;
-  }
-  let middle = Math.floor(arr.length / 2);
-  let leftSlice = mergeSort(arr.slice(0, middle));
-  let rightSlice = mergeSort(arr.slice(middle));
-
-  return merge(leftSlice, rightSlice);
-}
 console.log("MergeSort", mergeSort(arr));
