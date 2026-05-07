@@ -105,6 +105,10 @@ function selectionSort(a) {
         min = j;
       }
     }
+    //  let temp = a[i];
+    //   a[i] = a[min];
+    //   a[min] = temp;
+    // Swap the found minimum element with the first element of the unsorted portion
     if (min !== i) {
       let temp = a[i];
       a[i] = a[min];
