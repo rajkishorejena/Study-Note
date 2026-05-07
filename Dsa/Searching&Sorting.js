@@ -83,3 +83,35 @@ console.log(bubbleSort([10, -22, 54, 3, 4, 45, 6]));
 // The outer loop runs n-1 times, and the inner loop runs n-i-1 times, where n is the length of the array.
 // If no swaps are made during an inner loop iteration, the array is already sorted, and the function breaks out of the loop early.
 // This approach has a time complexity of O(n^2) in the worst case and a space complexity of O(1) since it uses only a few variables for indexing and swapping.
+
+/**
+ * Selection Sort
+ * This function sorts an array using the selection sort algorithm.
+ * Selection sort works by repeatedly selecting the smallest unsorted element and swapping it with the first unsorted element until the entire array is sorted.
+ * The function uses a nested loop to find the minimum element in the unsorted portion of the array and swap it with the first unsorted element.
+ * The outer loop runs n-1 times, and the inner loop runs i+1 to n times, where n is the length of the array.
+ * This approach has a time complexity of O(n^2) in the worst case and a space complexity of O(1) since it uses only a few variables for indexing and swapping.
+ * Space complexity is O(1) because it sorts the array in place without using any additional data structures.
+ */
+
+let arr = [7, 1, 5, 4, 3, 2];
+
+function selectionSort(a) {
+  let n = a.length;
+  for (let i = 0; i < n - 1; i++) {
+    let min = i;
+    for (let j = i + 1; j < n; j++) {
+      if (a[j] < a[min]) {
+        min = j;
+      }
+    }
+    if (min !== i) {
+      let temp = a[i];
+      a[i] = a[min];
+      a[min] = temp;
+    }
+  }
+  return a;
+}
+
+console.log(selectionSort(arr));
