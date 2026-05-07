@@ -119,3 +119,54 @@ function selectionSort(a) {
 }
 
 console.log(selectionSort(arr));
+
+/**
+ * Insertion Sort
+ * This function sorts an array using the insertion sort algorithm.
+ * Insertion sort builds the sorted array one element at a time by repeatedly taking the next unsorted element and inserting it into the correct position in the sorted portion of the array.
+ * The function uses a loop to iterate through the array, starting from the second element, and compares each element with the elements in the sorted portion to find its correct position.
+ * The inner loop shifts elements in the sorted portion to the right until it finds the correct position for the current element.
+ * This approach has a time complexity of O(n^2) in the worst case and a space complexity of O(1) since it uses only a few variables for indexing and shifting.
+ * Space complexity is O(1) because it sorts the array in place without using any additional data structures.
+ */
+
+/**
+ * Merge Sort
+ * This function sorts an array using the merge sort algorithm.
+ * Merge sort is a divide-and-conquer algorithm that recursively divides the array into halves until it reaches arrays of size one, which are inherently sorted.
+ * The function then merges the sorted halves back together in the correct order to produce a fully sorted array.
+ * The merge process involves comparing elements from the two halves and building a new sorted array by selecting the smaller element at each step.
+ * This approach has a time complexity of O(n log n) in all cases and a space complexity of O(n) due to the additional space required for the temporary arrays used during the merge process.
+ * Space complexity is O(n) because it requires additional space to hold the merged arrays during the sorting process.
+ */
+
+let arr = [7, 1, 5, 4, 3, 2];
+//Helper function to merge two sorted arrays [1, 3, 5] and [2, 4, 6]
+function merge(left, right) {
+  let result = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i]);
+      i++;
+    } else {
+      result.push(right[j]);
+      j++;
+    }
+  }
+  return [...result, ...left.slice(i), ...right.slice(j)];
+}
+
+function mergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let middle = Math.floor(arr.length / 2);
+  let leftSlice = mergeSort(arr.slice(0, middle));
+  let rightSlice = mergeSort(arr.slice(middle));
+
+  return merge(leftSlice, rightSlice);
+}
+console.log("MergeSort", mergeSort(arr));
