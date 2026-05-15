@@ -78,6 +78,64 @@ function findSecondLargest(arr) {
   return secondLargest;
 }
 
-console.log(findSecondLargest([10, 5, 8, 20, 15]));
+// console.log(findSecondLargest([10, 5, 8, 20, 15]));
 //Output : 15
 // Time And Space Complexity : O(n)
+
+// Q3: Remove the Duplicate numbers from the Array
+// Input: [1, 2, 3, 2, 4, 1, 5]
+// OutPut: [1, 2, 3, 4, 5]
+
+function removeDuplicateInbuiltMethod(input) {
+  return [...new Set(input)];
+}
+
+// console.log(removeDuplicateInbuiltMethod([1, 2, 3, 2, 4, 1, 5]));
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+
+// Without using the built-in method
+function removeDuplicate(input) {
+  let result = [];
+
+  for (let i = 0; i < input.length; i++) {
+    let isDuplicate = false;
+    for (let j = 0; j < result.length; j++) {
+      if (input[i] === result[j]) {
+        isDuplicate = true;
+        break;
+      }
+    }
+    if (!isDuplicate) {
+      result.push(input[i]);
+    }
+  }
+  return result;
+}
+
+// console.log("remove duplicate", removeDuplicate([1, 2, 3, 2, 4, 1, 5]));
+// Time-Complexity : O(n²)
+// Space - Complexity : O(n)
+
+// Using Object HashMap
+
+function removeDuplicatesWithHashMap(input) {
+  let seen = {};
+  let result = [];
+
+  for (let num of input) {
+    // console.log(num);
+    if (!seen[num]) {
+      seen[num] = true;
+      result.push(num);
+    }
+  }
+  return result;
+}
+
+console.log(
+  "removeDuplicatesWithHashMap",
+  removeDuplicatesWithHashMap([1, 2, 3, 2, 4, 1, 5]),
+);
+// Time Complexity : O(n)
+// Space Complexity : O(n)
