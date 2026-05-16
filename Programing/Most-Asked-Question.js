@@ -118,7 +118,6 @@ function removeDuplicate(input) {
 // Space - Complexity : O(n)
 
 // Using Object HashMap
-
 function removeDuplicatesWithHashMap(input) {
   let seen = {};
   let result = [];
@@ -133,9 +132,38 @@ function removeDuplicatesWithHashMap(input) {
   return result;
 }
 
-console.log(
-  "removeDuplicatesWithHashMap",
-  removeDuplicatesWithHashMap([1, 2, 3, 2, 4, 1, 5]),
-);
+// console.log(
+//   "removeDuplicatesWithHashMap",
+//   removeDuplicatesWithHashMap([1, 2, 3, 2, 4, 1, 5]),
+// );
 // Time Complexity : O(n)
 // Space Complexity : O(n)
+
+//Q4: Sum of All number in the Array
+// Input: [10, 20, 30, 40];
+// Output: 100
+
+//Using build in method (Reduce)
+function sumOfaArray(input) {
+  return input.reduce((acc, curr) => {
+    return (acc += curr);
+  }, 0);
+}
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+// console.log("Sum Of a Array", sumOfaArray([10, 20, 30, 40]));
+
+//With out Using build in method
+function sumOfArray(input) {
+  if (input.largest < 0) return 0;
+  let result = 0;
+  for (let num of input) {
+    result += num;
+  }
+  return result;
+}
+
+console.log(sumOfArray([10, 20, 30, 40]));
+// Time Complexity: O(n)
+// Space Complexity: O(1)
