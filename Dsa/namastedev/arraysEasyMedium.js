@@ -74,3 +74,121 @@ const reverseString = function (s) {
 };
 
 console.log(`${reverseString(["H", "a", "n", "n", "a", "h"])}`);
+
+/**
+ * Leet Code: 121. Best Time to Buy and Sell Stock
+ * You are given an array prices where prices[i] is the price of a given stock on the ith day.
+ * Input: prices = [7,1,5,3,6,4] // Output: 5
+ */
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+const maxProfit = function (prices) {
+  let min = prices[0];
+  let maxProfit = 0;
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i] - min > maxProfit) {
+      maxProfit = prices[i] - min;
+    }
+
+    if (min > prices[i]) {
+      min = prices[i];
+    }
+  }
+  return maxProfit;
+};
+
+console.log("Max Profit [7,1,5,3,6,4]", maxProfit([7, 1, 5, 3, 6, 4]));
+
+/**
+ * Leet Code: 485. Max Consecutive Ones
+ * Given a binary array nums, return the maximum number of consecutive 1's in the array.
+ * Input: nums = [1,1,0,1,1,1] // Output: 3
+ */
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxConsecutiveOnes = function (nums) {
+  let currentCount = 0;
+  let maxCount = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 1) {
+      currentCount++;
+      maxCount = Math.max(currentCount, maxCount);
+    } else {
+      currentCount = 0;
+    }
+  }
+  return Math.max(currentCount, maxCount);
+};
+
+console.log(findMaxConsecutiveOnes([1, 1, 0, 1, 1, 1]));
+
+/**
+ * Leet Code: 136. Missing Number
+ * Given an array nums containing n distinct numbers in the range [0, n],
+ * return the only number in the range that is missing from the array.
+ * Input: nums = [3,0,1] , // Output: 2
+ * n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+ *
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function (nums) {
+  let n = nums.length;
+  let actualTotal = (n * (n + 1)) / 2;
+  let arrTotal = 0;
+  for (let i = 0; i < n; i++) {
+    arrTotal = arrTotal + nums[i];
+  }
+
+  return actualTotal - arrTotal;
+};
+
+/**
+ * Leet Code : 136. Single Number
+ * Given a non-empty array of integers nums, every element appears twice except for one.
+ * Find that single one.
+ * Input: nums = [2,2,1] // Output: 1
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// Approach  : 1
+// const singleNumber = function (nums) {
+//   let numsObj = {};
+
+//   for (let i = 0; i < nums.length; i++) {
+//     if (!numsObj[nums[i]]) {
+//       numsObj[nums[i]] = 1;
+//     } else {
+//       numsObj[nums[i]]++;
+//     }
+//   }
+
+//   for (let i = 0; i < nums.length; i++) {
+//     if (numsObj[nums[i]] == 1) {
+//       return nums[i];
+//     }
+//   }
+// };
+
+// Better Approach : 2
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+  let xor = 0;
+  for (let i = 0; i < nums.length; i++) {
+    xor = xor ^ nums[i];
+  }
+  return xor;
+};
